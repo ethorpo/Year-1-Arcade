@@ -116,7 +116,7 @@ function update() {
 	}
 	if (keyNEXT.isDown)
 	{
-		stage9();
+		bossStage();
 	}
 
 	//player

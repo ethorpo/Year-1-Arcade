@@ -117,7 +117,7 @@ function update() {
 	}
 	if (keyNEXT.isDown)
 	{
-		stage9();
+		bossStage();
 	}
 
 	//player
@@ -690,7 +690,7 @@ spikes.callAll('kill');
 		{
 			bossStage();
 		}
-		if (keyCount == 10)
+		if (keyCount == 11)
 		{
 			credit = game.add.sprite(0, 0, 'credit');
 		}
@@ -1779,66 +1779,6 @@ function stage10 ()
 		exit = game.add.sprite(400, 38, 'bossDoor');
 		key = goldKey.create(725, 75, 'bossKey');
 		key.body.immovable = true;
-		var spike = spikes.create(600, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(568, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(536, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(504, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(472, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(440, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(408, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(376, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(344, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(312, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(280, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(248, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(216, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(184, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(152, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(120, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(88, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(56, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(24, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(-12, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
 		
 		//Pickups
 
