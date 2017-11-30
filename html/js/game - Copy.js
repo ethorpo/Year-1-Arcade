@@ -1708,12 +1708,6 @@ function stage9 ()
 		sword.animations.add('right', [5, 6, 7, 8], 10, true);
 		sword.animations.add('stun', [4], 10, true);
 		
-		
-		shooter = game.add.sprite(675, 50, 'bad-guy-shoot');
-		shooter.enableBody = true;
-		game.physics.arcade.enable(shooter);
-		
-		
 		//Player
 		
 		player = game.add.sprite(50, 500, 'dude');
