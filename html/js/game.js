@@ -66,6 +66,7 @@ function preload() {
 	game.load.image('special', 'img/special.png');
 	game.load.spritesheet('special-missle', 'img/special-missle.png', 32, 48);
 	game.load.image('spike', 'img/spike.png');
+	game.load.image('credit', 'img/credit.png');
 	
 }
 
@@ -112,6 +113,10 @@ function update() {
 		game.world.removeAll();
 		start();
 		specialFired = false;
+	}
+	if (keyNEXT.isDown)
+	{
+		stage9();
 	}
 
 	//player
@@ -684,6 +689,10 @@ spikes.callAll('kill');
 		{
 			bossStage();
 		}
+		if (keyCount == 10)
+		{
+			credit = game.add.sprite(0, 0, 'credit');
+		}
 		
 		if (specialPrep == true && specialReady.alive == false)
 	{
@@ -771,14 +780,10 @@ function start ()
 		var level = load.create(725, 36, 'exit');
 		level.body.immovable = true;
 		enter = game.add.sprite(20, game.world.height - 95, 'door');
-		
+			
 		var spike = spikes.create(100, 100, 'spike');
 		spike.body.immovable = true;
 		spike.kill();
-		
-		key = goldKey.create(25, 25, 'key');
-		key.body.immovable = true;
-		key.kill();
 		
 		//Pickups
 		
@@ -908,6 +913,7 @@ function stage2 ()
 		enter = game.add.sprite(680, game.world.height - 95, 'door');
 		key = goldKey.create(25, 25, 'key');
 		key.body.immovable = true;
+		
 	
 		//Pickups
 		
@@ -1971,6 +1977,8 @@ function bossStage ()
 		ground.body.immovable = true;
 		ground = platform.create(400, game.world.height - 32, 'platform');
 		ground.body.immovable = true;
+		key = goldKey.create(400, 300, 'bossKey');
+		key.body.immovable = true;
 		
 		//Pickups
 

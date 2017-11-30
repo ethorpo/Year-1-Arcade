@@ -66,6 +66,7 @@ function preload() {
 	game.load.image('special', 'img/special.png');
 	game.load.spritesheet('special-missle', 'img/special-missle.png', 32, 48);
 	game.load.image('spike', 'img/spike.png');
+	game.load.image('credit', 'img/credit.png');
 	
 }
 
@@ -83,10 +84,11 @@ function update() {
 	    player.body.velocity.x = 0;
 		sword.body.velocity.x = 0;
 	game.physics.arcade.overlap(shot, blocks, shotDie, null, this);
-	game.physics.arcade.overlap(sword, blocks, stunSword, null, this);
+	//game.physics.arcade.overlap(sword, blocks, stunSword, null, this);
 	game.physics.arcade.overlap(player, coins, collectcoins, null, this);
 	game.physics.arcade.overlap(small, attacks, fightSmall, null, this);
 	game.physics.arcade.overlap(shooter, attacks, fightShooter, null, this);
+	game.physics.arcade.overlap(sword, attacks, fightSword, null, this);
 	game.physics.arcade.overlap(player, sword, die, null, this);
 	game.physics.arcade.overlap(player, small, die, null, this);
 	game.physics.arcade.overlap(player, shot, die, null, this);
@@ -112,6 +114,10 @@ function update() {
 		game.world.removeAll();
 		start();
 		specialFired = false;
+	}
+	if (keyNEXT.isDown)
+	{
+		stage9();
 	}
 
 	//player
@@ -476,11 +482,11 @@ function update() {
 	{
 			small.animations.play('left');
 	}
-	if (swordStun == true)
+	/*if (swordStun == true)
 	{
 		game.physics.arcade.overlap(sword, attacks, fightSword, null, this);
 	}
-	
+	*/
 	if (shotFired == false && shooter.alive)
 	{
 		shotFired = true
@@ -561,14 +567,14 @@ function fightSmall () {
 	specialAttack1.kill();
 	}
 }
-
+/*
 function stunSword (sword, block) {
 	
 		swordStun = true;
 		sword.animations.play('stun');
 		swordMove = 0;
 }
-
+*/
 function fightSword () {
 	
 	sword.kill();
@@ -684,6 +690,10 @@ spikes.callAll('kill');
 		{
 			bossStage();
 		}
+		if (keyCount == 10)
+		{
+			credit = game.add.sprite(0, 0, 'credit');
+		}
 		
 		if (specialPrep == true && specialReady.alive == false)
 	{
@@ -771,14 +781,10 @@ function start ()
 		var level = load.create(725, 36, 'exit');
 		level.body.immovable = true;
 		enter = game.add.sprite(20, game.world.height - 95, 'door');
-		
+			
 		var spike = spikes.create(100, 100, 'spike');
 		spike.body.immovable = true;
 		spike.kill();
-		
-		key = goldKey.create(25, 25, 'key');
-		key.body.immovable = true;
-		key.kill();
 		
 		//Pickups
 		
@@ -815,6 +821,7 @@ function start ()
 		sword.animations.add('left', [0, 1, 2, 3], 10, true);
 		sword.animations.add('right', [5, 6, 7, 8], 10, true);
 		sword.animations.add('stun', [4], 10, true);
+		sword.kill();
 		
 		shooter = game.add.sprite(150, 400, 'bad-guy-shoot');
 		shooter.enableBody = true;
@@ -908,6 +915,7 @@ function stage2 ()
 		enter = game.add.sprite(680, game.world.height - 95, 'door');
 		key = goldKey.create(25, 25, 'key');
 		key.body.immovable = true;
+		
 	
 		//Pickups
 		
@@ -942,10 +950,6 @@ function stage2 ()
 		sword.animations.add('left', [0, 1, 2, 3], 10, true);
 		sword.animations.add('right', [5, 6, 7, 8], 10, true);
 		sword.animations.add('stun', [4], 10, true);
-		
-		shooter = game.add.sprite(150, 400, 'bad-guy-shoot');
-		shooter.enableBody = true;
-		game.physics.arcade.enable(shooter);
 
 				
 		//Player
@@ -1036,16 +1040,6 @@ function stage3 ()
 		coin.scale.setTo(0.5, 0.5);		
 		
 		//enimies
-		
-		small = game.add.sprite(400, 450, 'bad-guy-small');
-		small.scale.setTo(1.75, 1.75);
-		game.physics.arcade.enable(small);
-		small.enableBody = true;
-		small.body.gravity.y = 5000;
-		small.body.collideWorldBounds = true;
-		smallMove = 100;
-		small.animations.add('left', [3], 10, true);
-		small.animations.add('right', [5], 10, true);
 		
 		sword = game.add.sprite(600, 200, 'bad-guy-sword');
 		sword.scale.setTo(1.75, 1.75);
@@ -1151,17 +1145,7 @@ function stage4 ()
 		coin.scale.setTo(0.5, 0.5);		
 		
 		//enimies
-		
-		small = game.add.sprite(400, game.world.height - 125, 'bad-guy-small');
-		small.scale.setTo(1.75, 1.75);
-		game.physics.arcade.enable(small);
-		small.enableBody = true;
-		small.body.gravity.y = 5000;
-		small.body.collideWorldBounds = true;
-		smallMove = 100;
-		small.animations.add('left', [3], 10, true);
-		small.animations.add('right', [5], 10, true);
-		
+
 		sword = game.add.sprite(400, 300, 'bad-guy-sword');
 		sword.scale.setTo(1.75, 1.75);
 		game.physics.arcade.enable(sword);
@@ -1291,12 +1275,6 @@ function stage5 ()
 		sword.animations.add('left', [0, 1, 2, 3], 10, true);
 		sword.animations.add('right', [5, 6, 7, 8], 10, true);
 		sword.animations.add('stun', [4], 10, true);
-		
-		
-		shooter = game.add.sprite(650, 50, 'bad-guy-shoot');
-		shooter.enableBody = true;
-		game.physics.arcade.enable(shooter);
-		
 		
 		//Player
 		
@@ -1500,11 +1478,6 @@ function stage7 ()
 		small.animations.add('left', [3], 10, true);
 		small.animations.add('right', [5], 10, true);
 		
-		shooter = game.add.sprite(675, 300, 'bad-guy-shoot');
-		shooter.enableBody = true;
-		game.physics.arcade.enable(shooter);
-		
-		
 		//Player
 		
 		player = game.add.sprite(50, game.world.height - 80, 'dude');
@@ -1579,30 +1552,6 @@ function stage8 ()
 		exit = game.add.sprite(50, 85, 'door');
 		key = goldKey.create(700, 50, 'key');
 		key.body.immovable = true;
-		var spike = spikes.create(0, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(32, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(64, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(98, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(130, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(162, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(196, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(228, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
 		
 		//Pickups
 		
@@ -1615,7 +1564,7 @@ function stage8 ()
 		
 		//enimies
 		
-		small = game.add.sprite(400, game.world.height - 125, 'bad-guy-small');
+		small = game.add.sprite(50, 50, 'bad-guy-small');
 		small.scale.setTo(1.75, 1.75);
 		game.physics.arcade.enable(small);
 		small.enableBody = true;
@@ -1624,18 +1573,6 @@ function stage8 ()
 		smallMove = 100;
 		small.animations.add('left', [3], 10, true);
 		small.animations.add('right', [5], 10, true);
-		
-		sword = game.add.sprite(50, 50, 'bad-guy-sword');
-		sword.scale.setTo(1.75, 1.75);
-		game.physics.arcade.enable(sword);
-		sword.enableBody = true;
-		sword.body.gravity.y = 5000;
-		sword.body.collideWorldBounds = true;
-		swordMove = 100;
-		sword.animations.add('left', [0, 1, 2, 3], 10, true);
-		sword.animations.add('right', [5, 6, 7, 8], 10, true);
-		sword.animations.add('stun', [4], 10, true);
-		
 		
 		shooter = game.add.sprite(25, 250, 'bad-guy-shoot');
 		shooter.enableBody = true;
@@ -1971,6 +1908,8 @@ function bossStage ()
 		ground.body.immovable = true;
 		ground = platform.create(400, game.world.height - 32, 'platform');
 		ground.body.immovable = true;
+		key = goldKey.create(400, 300, 'bossKey');
+		key.body.immovable = true;
 		
 		//Pickups
 
