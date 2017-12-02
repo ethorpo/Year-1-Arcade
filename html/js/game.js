@@ -115,10 +115,10 @@ function update() {
 		start();
 		specialFired = false;
 	}
-	if (keyNEXT.isDown)
+	/*if (keyNEXT.isDown)
 	{
 		bossStage();
-	}
+	}*/
 
 	//player
 		
