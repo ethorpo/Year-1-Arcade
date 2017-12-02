@@ -67,7 +67,7 @@ function preload() {
 	game.load.spritesheet('special-missle', 'img/special-missle.png', 32, 48);
 	game.load.image('spike', 'img/spike.png');
 	game.load.image('credit', 'img/credit.png');
-	
+	game.load.image('orb', 'img/orb.png');
 }
 
 function create() {
@@ -1842,7 +1842,7 @@ function bossStage ()
 		ground.body.immovable = true;
 		ground = platform.create(400, game.world.height - 32, 'platform');
 		ground.body.immovable = true;
-		key = goldKey.create(400, 300, 'bossKey');
+		key = goldKey.create(368, 300, 'orb');
 		key.body.immovable = true;
 		
 		//Pickups
