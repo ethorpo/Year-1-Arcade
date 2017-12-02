@@ -652,54 +652,49 @@ spikes.callAll('kill');
 
 		if (keyCount == 0)
 		{
-			game.world.removeAll();
 			stage2();
 		}
 		if (keyCount == 1)
 		{
-			game.world.removeAll();
 			stage3();
 		}
 		if (keyCount == 2)
 		{
-			game.world.removeAll();
 			stage4();
 		}
 		if (keyCount == 3)
 		{
-			game.world.removeAll();
 			stage5();
 		}
 		if (keyCount == 4)
 		{
-			game.world.removeAll();
 			stage6();
 		}
 		if (keyCount == 5)
 		{
-			game.world.removeAll();
 			stage7();
 		}
 		if (keyCount == 6)
 		{
-			game.world.removeAll();
 			stage8();
 		}
 		if (keyCount == 7)
 		{
-			game.world.removeAll();
 			stage9();
 		}
 		if (keyCount == 8)
 		{
-			game.world.removeAll();
 			stage10();
 		}
 		if (keyCount == 9)
 		{
-			game.world.removeAll();
 			bossStage();
-		}		
+		}
+		if (keyCount == 11)
+		{
+			credit = game.add.sprite(0, 0, 'credit');
+		}
+		
 		if (specialPrep == true && specialReady.alive == false)
 	{
 		specialReady = game.add.sprite(550, game.world.height - 50, 'special');
@@ -712,25 +707,18 @@ function keyCollect (player, key) {
 	key.kill();
 	
 	keyCount = keyCount + 1;
-	if (keyCount == 10)
-	{
-		credit = game.add.sprite(0, 0, 'credit');
-	}
 	if (keyCount == 9)
 	{
 		var level = load.create(exit.position.x, exit.position.y, 'bossExit');
 		level.enableBody = true;
 		level.body.immovable = true;
-		exit.kill();
 	}
-	else
-	{
+	else{
 	var level = load.create(exit.position.x, exit.position.y, 'exit');
 	level.enableBody = true;
 	level.body.immovable = true;
-	exit.kill();
 	}
-	
+	exit.kill();
 }
 
 function start () 
@@ -1856,16 +1844,6 @@ function bossStage ()
 		ground.body.immovable = true;
 		key = goldKey.create(400, 300, 'bossKey');
 		key.body.immovable = true;
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
 		
 		//Pickups
 

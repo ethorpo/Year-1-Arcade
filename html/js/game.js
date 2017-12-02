@@ -110,9 +110,9 @@ function update() {
 	
 	if (key2.isDown)
 	{
+		game.world.removeAll();
 		start();
 		specialFired = false;
-		shotCount = 0;
 	}
 	if (keyNEXT.isDown)
 	{
@@ -486,8 +486,6 @@ function update() {
 		game.physics.arcade.overlap(sword, attacks, fightSword, null, this);
 	}
 	
-	//shot
-	
 	if (shotFired == false && shooter.alive)
 	{
 		shotFired = true
@@ -548,11 +546,6 @@ function update() {
 		shot.kill();
 		shotFired = false;
 	}
-	}
-	
-	if (player.alive == false && shot.alive)
-	{
-		shot.kill();
 	}
 }
 
@@ -653,15 +646,12 @@ function shotDie () {
 
 function loadNext () {
 
+game.world.removeAll();
 spikes.callAll('kill');
-small.kill();
-sword.kill();
-shooter.kill();
-shot.kill();
 
 		if (keyCount == 0)
 		{
-			stage2();	
+			stage2();
 		}
 		if (keyCount == 1)
 		{
@@ -699,6 +689,10 @@ shot.kill();
 		{
 			bossStage();
 		}
+		if (keyCount == 10)
+		{
+			credit = game.add.sprite(0, 0, 'credit');
+		}
 		
 		if (specialPrep == true && specialReady.alive == false)
 	{
@@ -712,25 +706,18 @@ function keyCollect (player, key) {
 	key.kill();
 	
 	keyCount = keyCount + 1;
-	if (keyCount == 10)
-	{
-		credit = game.add.sprite(0, 0, 'credit');
-	}
 	if (keyCount == 9)
 	{
 		var level = load.create(exit.position.x, exit.position.y, 'bossExit');
 		level.enableBody = true;
 		level.body.immovable = true;
-		exit.kill();
 	}
-	else
-	{
+	else{
 	var level = load.create(exit.position.x, exit.position.y, 'exit');
 	level.enableBody = true;
 	level.body.immovable = true;
-	exit.kill();
 	}
-	
+	exit.kill();
 }
 
 function start () 
@@ -1077,9 +1064,11 @@ function stage3 ()
 		sword.animations.add('right', [5, 6, 7, 8], 10, true);
 		sword.animations.add('stun', [4], 10, true);
 		
+		
 		shooter = game.add.sprite(25, 250, 'bad-guy-shoot');
 		shooter.enableBody = true;
 		game.physics.arcade.enable(shooter);
+		
 		
 		//Player
 		
@@ -1865,7 +1854,6 @@ function stage10 ()
 		exit = game.add.sprite(400, 38, 'bossDoor');
 		key = goldKey.create(725, 75, 'bossKey');
 		key.body.immovable = true;
-		
 		var spike = spikes.create(600, 535, 'spike');
 		spike.body.immovable = true;
 		spike.scale.setTo(.5, .5);
@@ -1991,16 +1979,6 @@ function bossStage ()
 		ground.body.immovable = true;
 		key = goldKey.create(400, 300, 'bossKey');
 		key.body.immovable = true;
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
-		exit = game.add.sprite(700, 505, 'door');
 		
 		//Pickups
 
