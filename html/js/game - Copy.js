@@ -19,6 +19,7 @@ var key1;
 var key2;
 var key3;
 var key4;
+var key5;
 var keyNEXT;
 var direction = 0;
 var swordStun = false;
@@ -649,6 +650,9 @@ function loadNext () {
 
 game.world.removeAll();
 spikes.callAll('kill');
+fightShooter();
+fightSword();
+fightSmall();
 
 		if (keyCount == 0)
 		{
@@ -690,7 +694,7 @@ spikes.callAll('kill');
 		{
 			bossStage();
 		}
-		if (keyCount == 11)
+		if (keyCount == 10)
 		{
 			credit = game.add.sprite(0, 0, 'credit');
 		}
@@ -723,6 +727,8 @@ function keyCollect (player, key) {
 
 function start () 
 {
+	game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+	
 		keyCount = 0;
 		coinCount = 0;
 		specialCount = 0;
@@ -731,6 +737,7 @@ function start ()
 		key2 = game.input.keyboard.addKey(Phaser.Keyboard.R);
 		key3 = game.input.keyboard.addKey(Phaser.Keyboard.A);
 		key4 = game.input.keyboard.addKey(Phaser.Keyboard.F);
+		key5 = game.input.keyboard.addKey(Phaser.Keyboard.P);
 		keyNEXT = game.input.keyboard.addKey(Phaser.Keyboard.J);
 		swordStun = false;
 		shotFired = false;
@@ -859,7 +866,17 @@ function start ()
 		attacks = game.add.group();
 		attacks.enableBody = true;
 		
+		key5.onDown.add(this.gofull, this);
+	
 }
+	
+	function gofull () {
+		
+		
+			game.scale.startFullScreen(true);
+		
+	}
+		
 
 function stage2 ()
 {
@@ -1158,7 +1175,7 @@ function stage4 ()
 		sword.animations.add('stun', [4], 10, true);
 		
 		
-		shooter = game.add.sprite(25, 150, 'bad-guy-shoot');
+		shooter = game.add.sprite(125, 150, 'bad-guy-shoot');
 		shooter.enableBody = true;
 		game.physics.arcade.enable(shooter);
 		
@@ -1564,7 +1581,7 @@ function stage8 ()
 		
 		//enimies
 		
-		small = game.add.sprite(50, 50, 'bad-guy-small');
+		small = game.add.sprite(50, 450, 'bad-guy-small');
 		small.scale.setTo(1.75, 1.75);
 		game.physics.arcade.enable(small);
 		small.enableBody = true;
@@ -1651,30 +1668,12 @@ function stage9 ()
 		stop.body.immovable = true;
 		stop = edge.create(-9, 550, 'stop');
 		stop.body.immovable = true;
-		stop = edge.create(590, 550, 'stop');
+		stop = edge.create(790, 550, 'stop');
 		stop.body.immovable = true;
 		enter = game.add.sprite(50, game.world.height - 95, 'door');
 		exit = game.add.sprite(50, 35, 'door');
 		key = goldKey.create(25, 150, 'key');
 		key.body.immovable = true;
-		var spike = spikes.create(600, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(632, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(664, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(696, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(728, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
-		spike = spikes.create(760, 535, 'spike');
-		spike.body.immovable = true;
-		spike.scale.setTo(.5, .5);
 		
 		//Pickups
 		

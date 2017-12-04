@@ -19,6 +19,7 @@ var key1;
 var key2;
 var key3;
 var key4;
+var key5;
 var keyNEXT;
 var direction = 0;
 var swordStun = false;
@@ -119,6 +120,7 @@ function update() {
 	{
 		bossStage();
 	}*/
+	
 
 	//player
 		
@@ -723,6 +725,8 @@ function keyCollect (player, key) {
 
 function start () 
 {
+	game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+	
 		keyCount = 0;
 		coinCount = 0;
 		specialCount = 0;
@@ -731,6 +735,7 @@ function start ()
 		key2 = game.input.keyboard.addKey(Phaser.Keyboard.R);
 		key3 = game.input.keyboard.addKey(Phaser.Keyboard.A);
 		key4 = game.input.keyboard.addKey(Phaser.Keyboard.F);
+		key5 = game.input.keyboard.addKey(Phaser.Keyboard.P);
 		keyNEXT = game.input.keyboard.addKey(Phaser.Keyboard.J);
 		swordStun = false;
 		shotFired = false;
@@ -858,7 +863,18 @@ function start ()
 		attacks = game.add.group();
 		attacks.enableBody = true;
 		
+		key5.onDown.add(this.gofull, this);
+	
 }
+	
+	function gofull () {
+		
+		
+			game.scale.startFullScreen(true);
+		
+	}
+		
+
 
 function stage2 ()
 {
