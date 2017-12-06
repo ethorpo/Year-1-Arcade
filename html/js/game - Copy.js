@@ -694,10 +694,6 @@ fightSmall();
 		{
 			bossStage();
 		}
-		if (keyCount == 10)
-		{
-			credit = game.add.sprite(0, 0, 'credit');
-		}
 		
 		if (specialPrep == true && specialReady.alive == false)
 	{
@@ -711,13 +707,18 @@ function keyCollect (player, key) {
 	key.kill();
 	
 	keyCount = keyCount + 1;
+	if (keyCount == 10)
+	{
+		credit = game.add.sprite(0, 0, 'credit');
+	}
 	if (keyCount == 9)
 	{
 		var level = load.create(exit.position.x, exit.position.y, 'bossExit');
 		level.enableBody = true;
 		level.body.immovable = true;
 	}
-	else{
+	else
+	{
 	var level = load.create(exit.position.x, exit.position.y, 'exit');
 	level.enableBody = true;
 	level.body.immovable = true;
