@@ -686,8 +686,8 @@ spikes.callAll('kill');
 		}
 		if (keyCount == 8)
 		{
-			sword.kill();
 			stage10();
+		sword.kill();
 		}
 		if (keyCount == 9)
 		{
