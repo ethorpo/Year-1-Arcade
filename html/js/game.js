@@ -728,7 +728,7 @@ function start ()
 {
 	game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 	
-		keyCount = 8;
+		keyCount = 0;
 		coinCount = 0;
 		specialCount = 0;
 	    cursors = game.input.keyboard.createCursorKeys();
